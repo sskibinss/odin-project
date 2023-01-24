@@ -3,28 +3,11 @@
   <!-- MENU SIDEBAR-->
   <aside class="menu-sidebar d-none d-lg-block">
     <div class="logo">
-      <a href="/">
+      <a href="/products">
         <img alt="luv2shop" class="img-responsive" src="assets/images/odin-logo.png">
       </a>
     </div>
-    <div class="menu-sidebar-content js-scrollbar1">
-      <nav class="navbar-sidebar">
-        <ul class="list-unstyled navbar-list">
-          <li>
-            <a href="#">Books</a>
-          </li>
-          <li>
-            <a href="#">Coffee Mugs</a>
-          </li>
-          <li>
-            <a href="#">Mouse Pads</a>
-          </li>
-          <li>
-            <a href="#">Luggage Tags</a>
-          </li>
-        </ul>
-      </nav>
-    </div>
+    <app-product-category-menu></app-product-category-menu>
   </aside>
   <!-- END MENU SIDEBAR-->
 
@@ -35,13 +18,7 @@
       <div class="section-content section-content-p30">
         <div class="container-fluid">
           <div class="header-wrap">
-            <form class="form-header" method="GET" onsubmit="return false;">
-              <input class="au-input au-input-xl" name="search" placeholder="Search for data ..."
-                     type="text"/>
-              <button class="au-btn-submit" type="submit">
-                Search
-              </button>
-            </form>
+            <app-search></app-search>
             <div class="cart-area d-n">
               <a href="shopping-detail.html">
                 <div class="total">19.22 <span> 2</span></div>
@@ -57,7 +34,7 @@
     <!-- END HEADER DESKTOP-->
 
     <!-- MAIN CONTENT-->
-    <app-product-list></app-product-list>
+    <router-outlet></router-outlet>
     <!-- END MAIN CONTENT-->
   </div>
 </div>

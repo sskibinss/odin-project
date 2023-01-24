@@ -2,16 +2,24 @@
   <div class="section-content section-content-p30">
     <div class="container-fluid">
       <div class="row">
-
-        <div *ngFor="let tempProduct of products" class="col-md-3">
+        <div *ngFor="let product of products" class="col-md-3">
           <div class="product-box">
-            <img src="{{ tempProduct.imageUrl }}" class="img-responsive" alt="NO IMAGE">
-            <h1>{{ tempProduct.name }}</h1>
-            <div class="price">{{ tempProduct.unitPrice | currency: "USD" }}</div>
-            <a href="#" class="primary-btn">Add to cart</a>
+            <a routerLink="/products/{{ product.id }}">
+              <img alt="assets/images/products/placeholder.png" class="img-responsive" src="{{ product.imageUrl }}">
+            </a>
+            <a routerLink="/products/{{ product.id }}">
+              <h1>{{ product.name }}</h1>
+            </a>
+            <div class="price">{{ product.unitPrice | currency: "USD" }}</div>
+            <a class="primary-btn" href="#">Add to cart</a>
           </div>
+        </div>
+
+        <div *ngIf="products?.length == 0" class="alert alert-warning col-md-12" role="alert">
+          I'm sorry, but there are no products with such name.
+          Please try again.
+        </div>
       </div>
     </div>
   </div>
-</div>
 </div>
