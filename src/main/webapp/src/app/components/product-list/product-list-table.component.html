@@ -1,25 +1,17 @@
-<table class="table">
-  <thead class="table-dark">
-    <tr>
-      <th></th>
-      <th>Name</th>
-      <th>Price</th>
-      <th>Units in Stock</th>
-    </tr>
-  </thead>
+<div class="main-content">
+  <div class="section-content section-content-p30">
+    <div class="container-fluid">
+      <div class="row">
 
-  <tbody>
-    <tr *ngFor="let tempProduct of products">
-      <td class="align-middle">
-        <img src="{{ tempProduct.imageUrl }}" height="100" alt="">
-      </td>
-      <td class="align-middle">{{tempProduct.name}}</td>
-      <td class="align-middle">{{tempProduct.unitPrice | currency:'USD'}}</td>
-      <td class="align-middle">{{tempProduct.unitsInStock}}</td>
-    </tr>
-  </tbody>
-</table>
-
-<!--<p *ngFor="let tempProduct of products">
-  {{ tempProduct.name}}: {{tempProduct.unitPrice | currency:'USD'}}
-</p>-->
+        <div *ngFor="let tempProduct of products" class="col-md-3">
+          <div class="product-box">
+            <img src="{{ tempProduct.imageUrl }}" class="img-responsive" alt="NO IMAGE">
+            <h1>{{ tempProduct.name }}</h1>
+            <div class="price">{{ tempProduct.unitPrice | currency: "USD" }}</div>
+            <a href="#" class="primary-btn">Add to cart</a>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
