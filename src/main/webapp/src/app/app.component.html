@@ -3,7 +3,7 @@
   <!-- MENU SIDEBAR-->
   <aside class="menu-sidebar d-none d-lg-block">
     <div class="logo">
-      <a href="/products">
+      <a routerLink="/products">
         <img alt="luv2shop" class="img-responsive" src="assets/images/odin-logo.png">
       </a>
     </div>
@@ -19,13 +19,7 @@
         <div class="container-fluid">
           <div class="header-wrap">
             <app-search></app-search>
-            <div class="cart-area d-n">
-              <a href="shopping-detail.html">
-                <div class="total">19.22 <span> 2</span></div>
-                <i aria-hidden="true"
-                   class="fa fa-shopping-cart"></i>
-              </a>
-            </div>
+            <app-cart-status></app-cart-status>
           </div>
           <div class="account-wrap"></div>
         </div>

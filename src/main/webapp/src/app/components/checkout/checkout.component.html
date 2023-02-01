@@ -1,0 +1,404 @@
+<div class="main-content page-m">
+  <div class="section-content section-content-p30">
+    <div class="container-fluid">
+      <div class="row">
+        <form (ngSubmit)="onSubmit()" [formGroup]="checkoutFormGroup">
+          <!--Delivery Details Section-->
+          <section>
+            <div class="row">
+              <div class="col-md-12 mb-2">
+                <div class="card mb-4">
+                  <div class="card-header py-3">
+                    <h5 class="mb-0">Delivery Details</h5>
+                  </div>
+                  <div class="card-body">
+                    <!-- customer form group-->
+                    <h5 class="mb-4">Customer</h5>
+
+                    <div class="form-group" formGroupName="customer">
+                      <div class="mb-1 mt-2">
+                        <label class="mb-2 ms-2">Email</label>
+                        <input class="form-control" formControlName="email" placeholder="Email" type="email">
+
+                        <div *ngIf="email?.invalid && email?.touched" class="alert alert-danger mt-1">
+
+                          <div *ngIf="email?.errors?.['required']">
+                            Email is required
+                          </div>
+
+                          <div *ngIf="email?.errors?.['pattern']">
+                            Email must be in a valid email address format
+                          </div>
+
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-md-6 mb-1 mt-2">
+                          <label class="mb-2 ms-2">First Name</label>
+                          <input class="form-control" formControlName="firstName" placeholder="First Name" type="text">
+
+                          <div *ngIf="firstName?.invalid && firstName?.touched"
+                               class="alert alert-danger mt-1">
+
+                            <div *ngIf="firstName?.errors?.['required']">
+                              First Name is required
+                            </div>
+
+                            <div *ngIf="firstName?.errors?.['pattern']">
+                              First Name must be in a valid format starting with a capital letter
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-md-6 mb-1 mt-2">
+                          <label class="mb-2 ms-2">Last Name</label>
+                          <input class="form-control" formControlName="lastName" placeholder="Last Name" type="text">
+
+                          <div *ngIf="lastName?.invalid && lastName?.touched"
+                               class="alert alert-danger mt-1">
+
+                            <div *ngIf="lastName?.errors?.['required']">
+                              Last Name is required
+                            </div>
+
+                            <div *ngIf="lastName?.errors?.['pattern']">
+                              Last Name must be in a valid format starting with a capital letter
+                            </div>
+
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-sm-2 mb-1 mt-2">
+                          <label class="mb-2 ms-2">Prefix</label>
+                          <input class="form-control text-center" formControlName="phoneCountryPrefix" placeholder="+48"
+                                 type="text">
+
+                          <div *ngIf="phoneCountryPrefix?.invalid && phoneCountryPrefix?.touched"
+                               class="alert alert-danger mt-1">
+
+                            <div *ngIf="phoneCountryPrefix?.errors?.['required']">
+                              Country Prefix is required
+                            </div>
+
+                            <div *ngIf="phoneCountryPrefix?.errors?.['pattern']">
+                              Country Prefix must be in a valid format, for example: "+48"
+                            </div>
+
+                          </div>
+                        </div>
+
+                        <div class="col-md-4 mb-1 mt-2">
+                          <label class="mb-2 ms-2">Phone</label>
+                          <input class="form-control" formControlName="phoneNumber" placeholder="123456789" type="text">
+
+                          <div *ngIf="phoneNumber?.invalid && phoneNumber?.touched"
+                               class="alert alert-danger mt-1">
+
+                            <div *ngIf="phoneNumber?.errors?.['required']">
+                              Phone Number is required
+                            </div>
+
+                            <div *ngIf="phoneNumber?.errors?.['pattern']">
+                              Phone Number must be in a valid format containing 9 digits only, for example: "123456789"
+                            </div>
+
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                    <hr class="my-4"/>
+                    <h5 class="mb-4">Address</h5>
+
+                    <div class="form-group" formGroupName="address">
+                      <div class="row">
+                        <div class="col-md-6 mb-1 mt-2">
+                          <label class="mb-2 ms-2">Country</label>
+                          <input class="form-control" formControlName="country" placeholder="Country" type="text">
+
+                          <div *ngIf="country?.invalid && country?.touched"
+                               class="alert alert-danger mt-1">
+
+                            <div *ngIf="country?.errors?.['required']">
+                              Country is required
+                            </div>
+
+                            <div *ngIf="country?.errors?.['pattern']">
+                              Country must be in a valid format
+                            </div>
+
+                          </div>
+                        </div>
+
+                        <div class="col-md-6 mb-1 mt-2">
+                          <label class="mb-2 ms-2">City</label>
+                          <input class="form-control" formControlName="city" placeholder="City" type="text">
+
+                          <div *ngIf="city?.invalid && city?.touched"
+                               class="alert alert-danger mt-1">
+
+                            <div *ngIf="city?.errors?.['required']">
+                              City is required
+                            </div>
+
+                            <div *ngIf="city?.errors?.['pattern']">
+                              City must be in a valid format
+                            </div>
+
+                          </div>
+                        </div>
+
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6 mb-1 mt-2">
+                          <label class="mb-2 ms-2">Address</label>
+                          <input class="form-control" formControlName="address" placeholder="1234 Main St"
+                                 type="text">
+
+                          <div *ngIf="address?.invalid && address?.touched"
+                               class="alert alert-danger mt-1">
+
+                            <div *ngIf="address?.errors?.['required']">
+                              Address is required
+                            </div>
+
+                            <div *ngIf="address?.errors?.['pattern']">
+                              Address must be in a valid format
+                            </div>
+
+                          </div>
+                        </div>
+
+                        <div class="col-md-6 mb-1 mt-2">
+                          <label class="mb-2 ms-2">Address 2</label>
+                          <input class="form-control" formControlName="address2" placeholder="Apartment or suite"
+                                 type="text">
+
+                          <div *ngIf="address2?.invalid && address2?.touched"
+                               class="alert alert-danger mt-1">
+
+                            <div *ngIf="address2?.errors?.['pattern']">
+                              Address 2 must be in a valid format
+                            </div>
+
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-md-6 mb-1 mt-2">
+                          <label class="mb-2 ms-2">State</label>
+                          <input class="form-control" formControlName="state" placeholder="State" type="text">
+
+                          <div *ngIf="state?.invalid && state?.touched"
+                               class="alert alert-danger mt-1">
+
+                            <div *ngIf="state?.errors?.['required']">
+                              State is required
+                            </div>
+
+                            <div *ngIf="state?.errors?.['pattern']">
+                              State must be in a valid format
+                            </div>
+
+                          </div>
+                        </div>
+
+                        <div class="col-md-6 mb-1 mt-2">
+                          <label class="mb-2 ms-2">Zip / Postal code</label>
+                          <input class="form-control" formControlName="postalCode" placeholder="XX-XXX"
+                                 type="text">
+
+                          <div *ngIf="postalCode?.invalid && postalCode?.touched"
+                               class="alert alert-danger mt-1">
+
+                            <div *ngIf="postalCode?.errors?.['required']">
+                              Zip / Postal code is required
+                            </div>
+
+                            <div *ngIf="postalCode?.errors?.['pattern']">
+                              Postal code must be in a valid format, for example: "01-991"
+                            </div>
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!--Payment Section-->
+          <section>
+            <div class="col-md-12 mb-2">
+              <div class="card mb-4">
+                <div class="card-header py-3">
+                  <h5 class="mb-0">Payment</h5>
+                </div>
+                <div class="card-body">
+                  <div class="form-group" formGroupName="cardDetails">
+                    <div class="row">
+                      <div class="col-md-7 mb-1 mt-2">
+                        <label class="mb-2 ms-2">Card Number</label>
+                        <input class="form-control" formControlName="cardNumber" placeholder="Enter card number"
+                               type="text">
+
+                        <div *ngIf="cardNumber?.invalid && cardNumber?.touched"
+                             class="alert alert-danger mt-1">
+
+                          <div *ngIf="cardNumber?.errors?.['required']">
+                            Card Number code is required
+                          </div>
+
+                          <div *ngIf="cardNumber?.errors?.['pattern']">
+                            Card Number must be in a valid format, for example: "1111 2222 3333 4444"
+                          </div>
+
+                        </div>
+                      </div>
+
+                      <div class="col-md-4 mb-1 mt-2">
+                        <label class="mb-2 ms-2">Expiration Date</label>
+                        <div class="row">
+                          <div class="input-space col-sm-5">
+                            <select class="text-center" formControlName="expirationMonth">
+                              <option *ngFor="let month of creditCardMonths" [ngValue]="month">
+                                {{ month }}
+                              </option>
+                            </select>
+
+                            <div *ngIf="expirationMonth?.invalid && expirationMonth?.touched"
+                                 class="alert alert-danger mt-1">
+
+                              <div *ngIf="expirationMonth?.errors?.['required']">
+                                Expiration Month is required
+                              </div>
+
+                            </div>
+                          </div>
+                          <div class="input-space col-sm-5">
+                            <select (change)="handleMonthAndYears()" class="text-center"
+                                    formControlName="expirationYear">
+                              <option *ngFor="let year of creditCardYears" [ngValue]="year">
+                                {{ year }}
+                              </option>
+                            </select>
+
+                            <div *ngIf="expirationYear?.invalid && expirationYear?.touched"
+                                 class="alert alert-danger mt-1">
+
+                              <div *ngIf="expirationYear?.errors?.['required']">
+                                Expiration Year is required
+                              </div>
+
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="mb-1 mt-2">
+                      <label class="mb-2 ms-2">Card holder name</label>
+                      <input class="form-control" formControlName="cardHolderName"
+                             placeholder="Full name as displayed on card"
+                             type="email">
+
+                      <div *ngIf="cardHolderName?.invalid && cardHolderName?.touched"
+                           class="alert alert-danger mt-1">
+
+                        <div *ngIf="cardHolderName?.errors?.['required']">
+                          Card holder name is required
+                        </div>
+
+                        <div *ngIf="cardHolderName?.errors?.['pattern']">
+                          Card holder name must be in a valid format, for example: "Firstname Lastname"
+                        </div>
+
+                      </div>
+                    </div>
+
+                    <div class="col-md-2 mb-1 mt-2">
+                      <label class="mb-2 ms-2">Security code (CVV)</label>
+                      <input class="form-control" formControlName="cvv" placeholder="XXX"
+                             type="text">
+
+                      <div *ngIf="cvv?.invalid && cvv?.touched"
+                           class="alert alert-danger mt-1">
+
+                        <div *ngIf="cvv?.errors?.['required']">
+                          CVV code is required
+                        </div>
+
+                        <div *ngIf="cvv?.errors?.['pattern']">
+                          CVV must be in a valid format, for example: "999"
+                        </div>
+
+                      </div>
+                    </div>
+
+                    <div class="form-check mb-4">
+                      <input checked class="form-check-input" formControlName="isRemember" type="checkbox" value=""/>
+                      <label class="form-check-label">
+                        Save this information for next time
+                      </label>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!--Summary Section-->
+          <section>
+            <div class="col-md-12 mb-1">
+              <div class="card mb-4">
+                <div class="card-header py-3">
+                  <h5 class="mb-0">Summary</h5>
+                </div>
+                <div class="card-body">
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+                      Quantity
+                      <span>{{ totalQuantity }}</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+                      Subtotal
+                      <span>{{ totalPrice | currency: "USD" }}</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                      Shipping
+                      <span>FREE</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
+                      <div>
+                        <strong>Total amount</strong>
+                        <strong>
+                          <p class="mb-0">(including VAT)</p>
+                        </strong>
+                      </div>
+                      <span><strong>{{ totalPrice | currency: "USD"}}</strong></span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </section>
+          <div class="container">
+            <div class="col-md-12 mb-2 text-center">
+              <button class="btn btn-primary btn-lg" type="submit">
+                Continue to Payment
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+

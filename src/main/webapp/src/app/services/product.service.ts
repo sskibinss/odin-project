@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {map, Observable} from "rxjs";
+import {Observable} from "rxjs";
 import {Product} from "../common/product";
 
 @Injectable({
@@ -13,14 +13,23 @@ export class ProductService {
   constructor(private httpClient: HttpClient) {
   }
 
-  getProductList(currentCategoryId: number): Observable<Product[]> {
+  getProductList(currentCategoryId: number): Observable<GetResponseProducts> {
     const searchUrl = `${this.baseUrl}/search/findByCategoryId?id=${currentCategoryId}`;
-    return this.handleGetCall(searchUrl);
+    return this.handleGetListCall(searchUrl);
   }
 
-  searchForProducts(userInput: string): Observable<Product[]> {
-    const searchUrl = `${this.baseUrl}/search/findByNameContaining?name=${userInput}`;
-    return this.handleGetCall(searchUrl);
+  getProductListPaginate(thePage: number,
+                         thePageSize: number,
+                         theCategoryId: number): Observable<GetResponseProducts> {
+    const searchUrl = `${this.baseUrl}/search/findByCategoryId?id=${theCategoryId}&page=${thePage}&size=${thePageSize}`;
+    return this.handleGetListCall(searchUrl);
+  }
+
+  searchForProductsPaginate(thePage: number,
+                            thePageSize: number,
+                            userInput: string): Observable<GetResponseProducts> {
+    const searchUrl = `${this.baseUrl}/search/findByNameContaining?name=${userInput}&page=${thePage}&size=${thePageSize}`;
+    return this.handleGetListCall(searchUrl);
   }
 
   getProduct(productId: number): Observable<Product> {
@@ -28,15 +37,19 @@ export class ProductService {
     return this.httpClient.get<Product>(searchUrl);
   }
 
-  handleGetCall(searchUrl: string) {
-    return this.httpClient.get<GetProducts>(searchUrl).pipe(
-      map(response => response._embedded.products)
-    );
+  handleGetListCall(searchUrl: string): Observable<GetResponseProducts> {
+    return this.httpClient.get<GetResponseProducts>(searchUrl);
   }
 }
 
-interface GetProducts {
+interface GetResponseProducts {
   _embedded: {
     products: Product[];
+  },
+  page: {
+    size: number,
+    totalElements: number,
+    totalPages: number,
+    number: number
   }
 }
