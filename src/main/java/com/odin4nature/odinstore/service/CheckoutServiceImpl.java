@@ -10,6 +10,7 @@ import com.odin4nature.odinstore.entity.OrderItem;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
+import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 
@@ -26,7 +27,7 @@ public class CheckoutServiceImpl implements CheckoutService {
     @Transactional
     public PurchaseResponseDto placeOrder(PurchaseDto purchase) {
         Order order = getOrderPopulatedWithData(purchase);
-        Customer customer = getCustomerPopulatedWithData(purchase, order);
+        Customer customer = getCorrectlyFilledOutCustomer(purchase.getCustomer(), order);
 
         customerRepository.save(customer);
 
@@ -59,8 +60,12 @@ public class CheckoutServiceImpl implements CheckoutService {
         order.setAddress(address);
     }
 
-    private Customer getCustomerPopulatedWithData(PurchaseDto purchase, Order order) {
-        Customer customer = purchase.getCustomer();
+    private Customer getCorrectlyFilledOutCustomer(Customer customer, Order order) {
+        Customer customerFromDB = customerRepository.findByEmail(customer.getEmail());
+        return getCustomerPopulatedWithData(Objects.requireNonNullElse(customerFromDB, customer), order);
+    }
+
+    private Customer getCustomerPopulatedWithData(Customer customer, Order order) {
         customer.addOrder(order);
         return customer;
     }

@@ -3,10 +3,12 @@ package com.odin4nature.odinstore.controller;
 import com.odin4nature.odinstore.dto.PurchaseDto;
 import com.odin4nature.odinstore.dto.PurchaseResponseDto;
 import com.odin4nature.odinstore.service.CheckoutService;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@CrossOrigin("http://localhost:4200")
 @RequestMapping("/api/checkout")
 public class CheckoutController {
 

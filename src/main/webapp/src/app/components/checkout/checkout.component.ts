@@ -22,6 +22,8 @@ export class CheckoutComponent implements OnInit {
   creditCardYears: number[] = [];
   checkoutFormGroup!: FormGroup;
 
+  sessionStorage: Storage = sessionStorage;
+
   constructor(private formBuilder: FormBuilder,
               private formService: FormService,
               private cartService: CartService,
@@ -98,11 +100,12 @@ export class CheckoutComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    const userEmail = JSON.parse(this.sessionStorage.getItem('userEmail') as string);
     this.checkoutFormGroup = this.formBuilder.group({
       customer: this.formBuilder.group({
         firstName: new FormControl('', [Validators.required, Validators.pattern('[A-Z]{1}[a-z]{1,19}')]),
         lastName: new FormControl('', [Validators.required, Validators.pattern('[A-Z]{1}[a-z]{1,19}')]),
-        email: new FormControl('', [Validators.required, Validators.pattern('[A-z0-9-+_]+@[a-z0-9-+_]+\\.[a-z0-9-+_]{2,4}')]),
+        email: new FormControl(userEmail, [Validators.required, Validators.pattern('[A-z0-9-+_]+@([a-z0-9-+_]+\\.){1,4}[a-z0-9-+_]{2,4}')]),
         phoneCountryPrefix: new FormControl('', [Validators.required, Validators.pattern('\\+\\d{2,3}')]),
         phoneNumber: new FormControl('', [Validators.required, Validators.pattern('\\d{9}')]),
       }),

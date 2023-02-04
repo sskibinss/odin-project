@@ -11,7 +11,7 @@
 
           <tr *ngFor="let cartItem of cartItems">
             <td>
-              <img alt="" class="img-responsive" src="{{ cartItem.imageUrl }}" width="150px"/>
+              <img alt="" src="{{ cartItem.imageUrl }}" width="300px" height="300px"/>
             </td>
 
             <td>
@@ -20,25 +20,24 @@
             </td>
 
             <td>
-              <label>Quantity:</label>
               <div class="row no-gutters">
-                <div class="col-sm-2">
-                  <button (click)="increaseItemQuantity(cartItem)" class="btn btn-primary btn-sm">
+                <div class="col-sm-2"></div>
+                <div class="col-auto me-1">
+                  <button (click)="increaseItemQuantity(cartItem)" class="btn btn-dark btn-sm">
                     <i class="fas fa-plus"></i>
                   </button>
                 </div>
-                <div class="col-sm-2 ms-3 mt-1">
-                  {{ cartItem.quantity }}
+                <div class="col-auto">
+                  Quantity: {{ cartItem.quantity }}
                 </div>
-                <div class="col-sm-2">
-                  <button (click)="decreaseItemQuantity(cartItem)" class="btn btn-primary btn-sm">
+                <div class="col-auto me-2">
+                  <button (click)="decreaseItemQuantity(cartItem)" class="btn btn-dark btn-sm">
                     <i class="fas fa-minus"></i>
                   </button>
                 </div>
-                <div class="col"></div>
               </div>
               <div>
-                <button (click)="removeItem(cartItem)" class="btn btn-primary btn-sm">
+                <button (click)="removeItem(cartItem)" class="btn btn-dark btn-sm">
                   Remove
                 </button>
               </div>
@@ -53,7 +52,7 @@
               <p>Total Quantity: {{ totalQuantity }}</p>
               <p>Shipping: FREE</p>
               <p>Total Quantity: {{ totalPrice | currency: "USD" }}</p>
-              <div><a class="btn btn-primary btn-sm" routerLink="/checkout">Checkout</a></div>
+              <div><a class="btn btn-dark btn-sm" routerLink="/checkout">Checkout</a></div>
             </td>
           </tr>
         </table>
