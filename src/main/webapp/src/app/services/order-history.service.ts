@@ -10,7 +10,9 @@ import {environment} from "../../environments/environment";
 export class OrderHistoryService {
 
   private orderUrl = environment.odinShopApiUrl + '/orders';
-  constructor(private httpClient: HttpClient) { }
+
+  constructor(private httpClient: HttpClient) {
+  }
 
   getOrderHistoryByEmail(email: string): Observable<GetResponseOrderHistory> {
     const orderHistoryUrl = `${this.orderUrl}/search/findByCustomerEmailOrderByDateCreated?email=${email}`;

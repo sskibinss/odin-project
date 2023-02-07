@@ -11,7 +11,7 @@ public class WebConfig implements WebMvcConfigurer {
     private String basePath;
 
     @Value("${allowed.origins}")
-    private String [] theAllowedOrigins;
+    private String[] theAllowedOrigins;
 
     @Override
     public void addCorsMappings(CorsRegistry cors) {

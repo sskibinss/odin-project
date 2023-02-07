@@ -1,13 +1,13 @@
 <div class="login-status-header">
   <div *ngIf="isAuthenticated && userFullName" class="login-status-user-info">
-    <div ngbDropdown class="d-inline-block">
-        <button type="button" class="security-btn" id="dropdown1" ngbDropdownToggle>{{ userFullName }}</button>
-      <div ngbDropdownMenu aria-labelledby="dropdown1">
+    <div class="d-inline-block" ngbDropdown>
+      <button class="security-btn" id="dropdown1" ngbDropdownToggle type="button">{{ userFullName }}</button>
+      <div aria-labelledby="dropdown1" ngbDropdownMenu>
         <button ngbDropdownItem routerLink="/order-history">Your Orders</button>
         <button ngbDropdownItem routerLink="/members">Members</button>
-        <button ngbDropdownItem (click)="logout()">Logout</button>
+        <button (click)="logout()" ngbDropdownItem>Logout</button>
       </div>
     </div>
   </div>
-  <button *ngIf="!isAuthenticated" routerLink="/login" class="security-btn">Login</button>
+  <button *ngIf="!isAuthenticated" class="security-btn" routerLink="/login">Login</button>
 </div>

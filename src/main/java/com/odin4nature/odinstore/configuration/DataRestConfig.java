@@ -14,7 +14,7 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 public class DataRestConfig implements RepositoryRestConfigurer {
 
     @Value("${allowed.origins}")
-    private String [] theAllowedOrigins;
+    private String[] theAllowedOrigins;
 
     @Override
     public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config, CorsRegistry cors) {

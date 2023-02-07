@@ -21,18 +21,19 @@
         </div>
       </div>
       <div class="footer-pagination">
-        <ngb-pagination class="d-flex justify-content-center"
+        <ngb-pagination (pageChange)="listProducts()"
                         [(page)]="thePageNumber"
-                        (pageChange)="listProducts()"
                         [boundaryLinks]="true"
                         [collectionSize]="theTotalElements"
                         [maxSize]="5"
-                        [pageSize]="thePageSize">
+                        [pageSize]="thePageSize"
+                        class="d-flex justify-content-center">
         </ngb-pagination>
 
         <div align="center">
           <span class="color-my-purple">Page Size</span>
-          <select class="form-select" style="width:auto; display: flex" #myPageSelect (change)="updatePageSize(myPageSelect.value)">
+          <select #myPageSelect (change)="updatePageSize(myPageSelect.value)" class="form-select"
+                  style="width:auto; display: flex">
             <option selected="selected">5</option>
             <option>10</option>
             <option>20</option>

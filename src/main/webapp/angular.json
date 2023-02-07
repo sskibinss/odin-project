@@ -19,7 +19,8 @@
               "p-cancelable",
               "tiny-emitter",
               "detect-node",
-              "@okta/okta-signin-widget"
+              "@okta/okta-signin-widget",
+              "country-code-lookup"
             ],
             "outputPath": "dist/webapp",
             "index": "src/index.html",
@@ -43,8 +44,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
                 },
                 {
                   "type": "anyComponentStyle",

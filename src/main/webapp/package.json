@@ -25,10 +25,13 @@
     "@okta/okta-auth-js": "^6.4.0",
     "@okta/okta-signin-widget": "^6.2.0",
     "@popperjs/core": "^2.10.2",
+    "@types/country-code-lookup": "^0.0.19",
     "bootstrap": "^5.2.3",
+    "country-code-lookup": "^0.0.22",
     "css-font-style": "^1.0.7",
     "ngx-google-places-autocomplete": "^2.0.5",
     "rxjs": "~7.5.0",
+    "stripe": "^8.179.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
   },

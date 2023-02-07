@@ -24,8 +24,8 @@ import appConfig from "./config/app-config";
 import {MembersPageComponent} from './components/members-page/members-page.component';
 import {OrderHistoryComponent} from './components/order-history/order-history.component';
 import {AuthInterceptorService} from "./services/auth-interceptor.service";
-import { AboutUsComponent } from './components/about-us/about-us.component';
-import { ContactUsComponent } from './components/contact-us/contact-us.component';
+import {AboutUsComponent} from './components/about-us/about-us.component';
+import {ContactUsComponent} from './components/contact-us/contact-us.component';
 
 const oktaConfig = appConfig.oidc;
 const oktaAuth = new OktaAuth(oktaConfig);
@@ -36,11 +36,14 @@ function sentToLoginPage(oktaAuth: OktaAuth, injector: Injector) {
 }
 
 const routes: Routes = [
-  {path: 'members', component: MembersPageComponent, canActivate: [OktaAuthGuard],
+  {
+    path: 'members', component: MembersPageComponent, canActivate: [OktaAuthGuard],
     data: {onAuthRequired: sentToLoginPage}
   },
-  {path: 'order-history', component: OrderHistoryComponent, canActivate: [OktaAuthGuard],
-    data: {onAuthRequired: sentToLoginPage}},
+  {
+    path: 'order-history', component: OrderHistoryComponent, canActivate: [OktaAuthGuard],
+    data: {onAuthRequired: sentToLoginPage}
+  },
   {path: 'login/callback', component: OktaCallbackComponent},
   {path: 'login', component: LoginComponent},
   {path: 'checkout', component: CheckoutComponent},
@@ -81,8 +84,8 @@ const routes: Routes = [
     ReactiveFormsModule,
     OktaAuthModule
   ],
-  providers: [ProductService, {provide: OKTA_CONFIG, useValue: { oktaAuth }},
-              {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}],
+  providers: [ProductService, {provide: OKTA_CONFIG, useValue: {oktaAuth}},
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule {

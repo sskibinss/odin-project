@@ -1,26 +1,31 @@
 package com.odin4nature.odinstore.service;
 
 import com.odin4nature.odinstore.dao.CustomerRepository;
+import com.odin4nature.odinstore.dto.PaymentInfoDto;
 import com.odin4nature.odinstore.dto.PurchaseDto;
 import com.odin4nature.odinstore.dto.PurchaseResponseDto;
 import com.odin4nature.odinstore.entity.Address;
 import com.odin4nature.odinstore.entity.Customer;
 import com.odin4nature.odinstore.entity.Order;
 import com.odin4nature.odinstore.entity.OrderItem;
+import com.stripe.Stripe;
+import com.stripe.exception.StripeException;
+import com.stripe.model.PaymentIntent;
 import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import java.util.Objects;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 public class CheckoutServiceImpl implements CheckoutService {
 
     private final CustomerRepository customerRepository;
 
-    public CheckoutServiceImpl(CustomerRepository customerRepository) {
+    public CheckoutServiceImpl(CustomerRepository customerRepository,
+                               @Value("${stripe.key.secret}") String secretKey) {
         this.customerRepository = customerRepository;
+        Stripe.apiKey = secretKey;
     }
 
     @Override
@@ -32,6 +37,19 @@ public class CheckoutServiceImpl implements CheckoutService {
         customerRepository.save(customer);
 
         return new PurchaseResponseDto(order.getOrderTrackingNumber());
+    }
+
+    @Override
+    public PaymentIntent createPaymentIntent(PaymentInfoDto paymentInfo) throws StripeException {
+        List<String> paymentsMethodTypes = List.of("card");
+        Map<String, Object> params = Map.of(
+                "amount", paymentInfo.getAmount(),
+                "currency", paymentInfo.getCurrency(),
+                "receipt_email", paymentInfo.getReceiptEmail(),
+                "payment_method_types", paymentsMethodTypes,
+                "description", "Óðinns Butikk purchase");
+
+        return PaymentIntent.create(params);
     }
 
     private Order getOrderPopulatedWithData(PurchaseDto purchase) {

@@ -1,4 +1,8 @@
 package com.odin4nature.odinstore.dto;
 
-public record PurchaseResponseDto(String orderTrackingNumber) {
+import lombok.Data;
+
+@Data
+public class PurchaseResponseDto {
+    private final String orderTrackingNumber;
 }

@@ -11,7 +11,9 @@ export class OrderHistoryComponent implements OnInit {
 
   orderHistoryList: OrderHistory[] = [];
   storage: Storage = sessionStorage;
-  constructor(private orderHistoryService: OrderHistoryService) { }
+
+  constructor(private orderHistoryService: OrderHistoryService) {
+  }
 
   ngOnInit(): void {
     this.handleOrderHistory();
