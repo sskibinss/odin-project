@@ -7,7 +7,8 @@
          type="text"
   />
 
-  <button (click)="searchForProducts(userSearchInput.value)" class="au-btn-submit">
+  <button [@simpleOnClickAnimation]="animationState"
+          (click)="toggleAnimationState(); searchForProducts(userSearchInput.value)" class="au-btn-submit">
     Search
   </button>
 </div>

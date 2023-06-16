@@ -84,30 +84,6 @@ export class CheckoutComponent implements OnInit {
     return this.checkoutFormGroup.get('address.postalCode');
   }
 
-  get cardNumber() {
-    return this.checkoutFormGroup.get('cardDetails.cardNumber');
-  }
-
-  get expirationMonth() {
-    return this.checkoutFormGroup.get('cardDetails.expirationMonth');
-  }
-
-  get expirationYear() {
-    return this.checkoutFormGroup.get('cardDetails.expirationYear');
-  }
-
-  get cvv() {
-    return this.checkoutFormGroup.get('cardDetails.cvv');
-  }
-
-  get cardHolderName() {
-    return this.checkoutFormGroup.get('cardDetails.cardHolderName');
-  }
-
-  get isRemember() {
-    return this.checkoutFormGroup.get('cardDetails.isRemember');
-  }
-
   ngOnInit(): void {
     this.setupPaymentForm();
     const userEmail = JSON.parse(this.sessionStorage.getItem('userEmail') as string);
@@ -127,8 +103,7 @@ export class CheckoutComponent implements OnInit {
         address2: new FormControl('', [Validators.pattern('[A-z0-9\s.-]+')]),
         state: new FormControl('', [Validators.required, Validators.pattern('[A-Z]{1}[a-z]{1,19}(\\s{0,1}[A-Z]{1}[a-z]{1,19})?')]),
         postalCode: new FormControl('', [Validators.required, Validators.pattern('\\d{2}-\\d{3}')]),
-      }),
-      cardDetails: this.formBuilder.group({}),
+      })
     });
     const startMonth: number = new Date().getMonth() + 1;
     this.formService.getCreditCardMonths(startMonth).subscribe(data => this.creditCardMonths = data);
@@ -219,22 +194,6 @@ export class CheckoutComponent implements OnInit {
 
   getFormValuesByGroupName(name: string): any {
     return this.checkoutFormGroup.controls[name].value;
-  }
-
-  handleMonthAndYears() {
-    const creditCardFormGroup = this.checkoutFormGroup.get('cardDetails');
-    const currentYear: number = new Date().getFullYear();
-    const selectedYear: number = Number(creditCardFormGroup?.value.expirationYear);
-
-    let startMonth: number;
-
-    if (currentYear === selectedYear) {
-      startMonth = new Date().getMonth() + 1;
-    } else {
-      startMonth = 1;
-    }
-
-    this.formService.getCreditCardMonths(startMonth).subscribe(data => this.creditCardMonths = data);
   }
 
   private resetCart() {

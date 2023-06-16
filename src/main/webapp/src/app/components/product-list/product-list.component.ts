@@ -4,25 +4,50 @@ import {Product} from "../../common/product";
 import {ActivatedRoute} from "@angular/router";
 import {CartItem} from "../../common/cart-item";
 import {CartService} from "../../services/cart.service";
+import {animate, state, style, transition, trigger} from "@angular/animations";
 
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.css']
+  styleUrls: ['./product-list.component.css'],
+  animations: [
+    trigger('simpleOnClickAnimation', [
+      state('normal', style({
+      })),
+      state('clicked', style({
+        backgroundColor: 'rgba(0, 0, 0, 0.1)'
+      })),
+      transition('normal => clicked', [
+        animate('50ms')
+      ]),
+      transition('clicked => normal', [
+        animate('50ms')
+      ]),
+    ])
+  ]
 })
 export class ProductListComponent implements OnInit {
 
   products: Product[] = [];
-  currentCategoryId: number = 1
+  currentCategoryId: number = 1;
   previousCategoryId: number = 1;
   thePageNumber: number = 1;
-  thePageSize: number = 5;
+  thePageSize: number = 8;
   theTotalElements: number = 0;
-
+  animationStates: string[] = [];
 
   constructor(private productService: ProductService,
               private route: ActivatedRoute,
               private cartService: CartService) {
+  }
+
+  toggleAnimationState(index: number) {
+    if (this.animationStates[index] !== 'clicked') {
+      this.animationStates[index] = 'clicked';
+      setTimeout(() => {
+        this.animationStates[index] = 'normal';
+      }, 200);
+    }
   }
 
   ngOnInit(): void {
@@ -46,7 +71,7 @@ export class ProductListComponent implements OnInit {
     if (hasCategoryId) {
       this.currentCategoryId = +this.route.snapshot.paramMap.get("id")!;
     } else {
-      this.currentCategoryId = 1;
+      this.currentCategoryId = 0;
     }
 
     if (this.previousCategoryId != this.currentCategoryId) {

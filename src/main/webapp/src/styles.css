@@ -24,6 +24,7 @@ body {
   --bs-link-color: #360252;
   --bs-pagination-active-bg: #000000;
 }
+
 #okta-sign-in.auth-container .button-primary,
 #okta-sign-in.auth-container .button-primary:hover {
   color: #360252 !important;
@@ -105,7 +106,7 @@ button {
 }
 
 img {
-  max-width: 100%;
+  max-width: 1000%;
   height: auto
 }
 
@@ -780,10 +781,6 @@ label.date {
   transform: rotate(45deg)
 }
 
-option:first {
-  color: #000000;
-}
-
 select {
   color: #000000;
 }
@@ -822,6 +819,7 @@ table.table.table-bordered td {
   padding: 9px;
   text-align: center;
 }
+
 .table-responsive {
   padding-right: 1px
 }
@@ -853,8 +851,11 @@ table.table.table-bordered td {
 }
 
 .detail-img {
-  width: 30%;
+  width: 90%;
   margin-top: 27px;
+  margin-left: 54px;
+  margin-right: 40px;
+  margin-bottom: 100px;
 }
 
 /**/

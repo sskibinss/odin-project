@@ -8,9 +8,9 @@
         <version>3.0.1</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.odin4nature</groupId>
-    <artifactId>odin-store</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <groupId>com.odinstore</groupId>
+    <artifactId>odinstore</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
     <name>odin-project</name>
     <description>odin-project</description>
     <properties>

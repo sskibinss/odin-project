@@ -1,16 +1,33 @@
 <div class="main-content">
+  <div class="section-content section-content-p30">
   <div class="container-fluid">
-
-    <img alt="" class="detail-img" src="{{ product.imageUrl }}">
-    <h3>{{ product.name }}</h3>
-    <div class="price">{{ product.unitPrice | currency: "USD" }}</div>
-    <button (click)="addToCart()" class="btn btn-dark btn-sm">Add to cart</button>
-
-    <hr>
-    <h4>Description</h4>
-    <p>{{ product.description }}</p>
-
-    <button class="btn btn-dark btn-sm" routerLink="/products">Back to Product List</button>
-
+    <div class="row">
+      <div class="col-5">
+        <img alt="" class="detail-img" src="{{ product.imageUrl }}" width="800" height="800">
+      </div>
+      <div class="col-5 mt-5">
+        <h2>{{ product.name }}</h2>
+        <div class="price"><h5>{{ product.unitPrice | currency: "USD" }}</h5></div>
+        <button [@simpleOnClickAnimation]="animationState"
+                (click)="toggleAnimationState(); addToCart()" class="btn btn-dark">Add to cart
+        </button>
+        <hr>
+        <div class="row mt-5" align="center">
+          <h3>Description</h3>
+        </div>
+        <div class="row mt-2" align="center">
+          <br>
+          <p class="p1">{{ product.description }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-5 " align="center">
+      <hr>
+      <div class="col-4"></div>
+      <div class="col-4 mt-1">
+        <button class="btn btn-dark" routerLink="/products">Back to Product List</button>
+      </div>
+    </div>
   </div>
+</div>
 </div>

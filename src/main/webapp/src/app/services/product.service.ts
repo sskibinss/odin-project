@@ -22,7 +22,12 @@ export class ProductService {
   getProductListPaginate(thePage: number,
                          thePageSize: number,
                          theCategoryId: number): Observable<GetResponseProducts> {
-    const searchUrl = `${this.baseUrl}/search/findByCategoryId?id=${theCategoryId}&page=${thePage}&size=${thePageSize}`;
+    let searchUrl: string;
+    if (theCategoryId == 0) {
+      searchUrl = `${this.baseUrl}?&page=${thePage}&size=${thePageSize}`
+    } else {
+      searchUrl = `${this.baseUrl}/search/findByCategoryId?id=${theCategoryId}&page=${thePage}&size=${thePageSize}`;
+    }
     return this.handleGetListCall(searchUrl);
   }
 

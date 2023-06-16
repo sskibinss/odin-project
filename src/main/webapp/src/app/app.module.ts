@@ -1,5 +1,6 @@
 import {Injector, NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {AppComponent} from './app.component';
 import {ProductListComponent} from './components/product-list/product-list.component';
@@ -26,6 +27,8 @@ import {OrderHistoryComponent} from './components/order-history/order-history.co
 import {AuthInterceptorService} from "./services/auth-interceptor.service";
 import {AboutUsComponent} from './components/about-us/about-us.component';
 import {ContactUsComponent} from './components/contact-us/contact-us.component';
+import {FrontPageComponent} from './components/front-page/front-page.component';
+import {NgOptimizedImage} from "@angular/common";
 
 const oktaConfig = appConfig.oidc;
 const oktaAuth = new OktaAuth(oktaConfig);
@@ -46,6 +49,7 @@ const routes: Routes = [
   },
   {path: 'login/callback', component: OktaCallbackComponent},
   {path: 'login', component: LoginComponent},
+  {path: '', component: FrontPageComponent},
   {path: 'checkout', component: CheckoutComponent},
   {path: 'cart-details', component: CartDetailsComponent},
   {path: 'categories/:id', component: ProductListComponent},
@@ -55,7 +59,7 @@ const routes: Routes = [
   {path: 'products', component: ProductListComponent},
   {path: 'about-us', component: AboutUsComponent},
   {path: 'contact-us', component: ContactUsComponent},
-  {path: '', redirectTo: '/products', pathMatch: "full"},
+  /*  {path: '', redirectTo: '/products', pathMatch: "full"},*/
   {path: '**', redirectTo: '/products', pathMatch: "full"}
 ];
 
@@ -74,7 +78,8 @@ const routes: Routes = [
     MembersPageComponent,
     OrderHistoryComponent,
     AboutUsComponent,
-    ContactUsComponent
+    ContactUsComponent,
+    FrontPageComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
@@ -82,7 +87,9 @@ const routes: Routes = [
     HttpClientModule,
     NgbModule,
     ReactiveFormsModule,
-    OktaAuthModule
+    OktaAuthModule,
+    BrowserAnimationsModule,
+    NgOptimizedImage
   ],
   providers: [ProductService, {provide: OKTA_CONFIG, useValue: {oktaAuth}},
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}],
